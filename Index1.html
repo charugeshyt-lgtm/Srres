@@ -1,1 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SR Restaurants - Premium Tamil Cuisine</title>
 
+<style>
+
+/* ===== GLOBAL ===== */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #0e0e0e;
+    color: #ffffff;
+}
+
+h2 {
+    border-bottom: 2px solid #c59d5f;
+    padding-bottom: 6px;
+    margin-top: 25px;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background: #111;
+    border-bottom: 1px solid #333;
+}
+
+header img {
+    width: 150px;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 60px;
+    background: #1a1a1a;
+}
+
+.nav a {
+    text-decoration: none;
+    color: white;
+    margin: 0 15px;
+    font-weight: 500;
+}
+
+.nav a:hover {
+    color: #c59d5f;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 25px;
+    padding: 40px 60px;
+}
+
+/* ===== PANELS ===== */
+.panel {
+    background: #1b1b1b;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+.menu-section {
+    margin-bottom: 30px;
+}
+
+.food-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px,1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #1a1a1a;
+    padding: 15px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px rgba(197,157,95,0.3);
+}
+
+.card h4 {
+    color: #c59d5f;
+    margin: 0;
+}
+
+.price {
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.desc {
+    font-size: 14px;
+    color: #bbb;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+input {
+    width: 55px;
+    padding: 5px;
+    border-radius: 4px;
+    border: none;
+}
+
+button {
+    background: #c59d5f;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #a67c39;
+}
+
+.cart-item {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.total {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #c59d5f;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #111;
+    margin-top: 30px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <img src="logo.png" alt="SR Restaurants Logo">
+</header>
+
+<div class="nav">
+    <div>
+        <a href="#">Ordered Items</a>
+        <a href="#">Info</a>
+    </div>
+    <div>
+        <a href="#">Contact</a>
+        <a href="#">My Orders</a>
+    </div>
+</div>
+
+<div class="container">
+
+<!-- LEFT PANEL -->
+<div class="panel">
+    <h2>Ordered Items</h2>
+    <div id="cart"></div>
+    <div class="total" id="total">Total: ₹0</div>
+
+    <h2>Restaurant Info</h2>
+    <p>Authentic Tamil Nadu Cuisine</p>
+    <p>Open: 10:00 AM - 11:00 PM</p>
+</div>
+
+<!-- MENU CENTER -->
+<div>
+
+    <div class="menu-section">
+        <h2>Starters</h2>
+        <div class="food-grid">
+
+            <div class="card">
+                <h4>Chicken 65</h4>
+                <div class="price">₹180</div>
+                <div class="desc">Spicy deep fried chicken</div>
+                <div class="controls">
+                    <input type="number" value="1" min="1">
+                    <button onclick="addToCart('Chicken 65',180,this)">Order</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h4>Paneer 65</h4>
+                <div class="price">₹160</div>
+                <div class="desc">Crispy fried paneer cubes</div>
+                <div class="controls">
+                    <input type="number" value="1" min="1">
+                    <button onclick="addToCart('Paneer 65',160,this)">Order</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="menu-section">
+        <h2>Main Course</h2>
+        <div class="food-grid">
+
+            <div class="card">
+                <h4>Chicken Biryani</h4>
+                <div class="price">₹220</div>
+                <div class="desc">Aromatic basmati rice with chicken</div>
+                <div class="controls">
+                    <input type="number" value="1" min="1">
+                    <button onclick="addToCart('Chicken Biryani',220,this)">Order</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h4>Mutton Biryani</h4>
+                <div class="price">₹320</div>
+                <div class="desc">Traditional spicy mutton biryani</div>
+                <div class="controls">
+                    <input type="number" value="1" min="1">
+                    <button onclick="addToCart('Mutton Biryani',320,this)">Order</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="menu-section">
+        <h2>Tiffin</h2>
+        <div class="food-grid">
+
+            <div class="card">
+                <h4>Dosa</h4>
+                <div class="price">₹80</div>
+                <div class="desc">Crispy golden dosa with chutney</div>
+                <div class="controls">
+                    <input type="number" value="1" min="1">
+                    <button onclick="addToCart('Dosa',80,this)">Order</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h4>Idli (2 pcs)</h4>
+                <div class="price">₹40</div>
+                <div class="desc">Soft steamed rice cakes</div>
+                <div class="controls">
+                    <input type="number" value="1" min="1">
+                    <button onclick="addToCart('Idli',40,this)">Order</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="menu-section">
+        <h2>Beverages & Desserts</h2>
+        <div class="food-grid">
+
+            <div class="card">
+                <h4>Filter Coffee</h4>
+                <div class="price">₹30</div>
+                <div class="desc">Authentic South Indian coffee</div>
+                <div class="controls">
+                    <input type="number" value="1" min="1">
+                    <button onclick="addToCart('Filter Coffee',30,this)">Order</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h4>Gulab Jamun</h4>
+                <div class="price">₹60</div>
+                <div class="desc">Sweet milk-based dessert</div>
+                <div class="controls">
+                    <input type="number" value="1" min="1">
+                    <button onclick="addToCart('Gulab Jamun',60,this)">Order</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- RIGHT PANEL -->
+<div class="panel">
+    <h2>Contact</h2>
+    <p>📞 +91 9876543210</p>
+    <p>📧 srrestaurants@gmail.com</p>
+    <p>📍 Salem, Tamil Nadu</p>
+
+    <h2>My Orders</h2>
+    <p>Track your orders after checkout.</p>
+</div>
+
+</div>
+
+<footer>
+© 2026 SR Restaurants | Premium Tamil Cuisine
+</footer>
+
+<script>
+let total = 0;
+
+function addToCart(name, price, btn) {
+    let quantity = btn.parentElement.querySelector("input").value;
+    let cart = document.getElementById("cart");
+
+    let item = document.createElement("div");
+    item.classList.add("cart-item");
+    item.textContent = name + " x" + quantity + " = ₹" + (price * quantity);
+
+    cart.appendChild(item);
+
+    total += price * quantity;
+    document.getElementById("total").textContent = "Total: ₹" + total;
+}
+</script>
+
+</body>
+                  </html>
